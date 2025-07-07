@@ -1,0 +1,61 @@
+# Configuration file for Sentiment Analysis Project
+
+# Data Collection Settings
+data_collection:
+  sources:
+    - name: "movie_reviews"
+      url: "https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews"
+      type: "csv"
+    - name: "twitter_sentiment"
+      url: "https://www.kaggle.com/datasets/kazanova/sentiment140"
+      type: "csv"
+  batch_size: 1000
+  max_samples: 10000
+
+# Data Preprocessing
+preprocessing:
+  max_sequence_length: 100
+  vocabulary_size: 10000
+  test_size: 0.2
+  validation_size: 0.1
+  random_state: 42
+
+# Model Training
+model_training:
+  epochs: 20
+  batch_size: 32
+  learning_rate: 0.001
+  early_stopping_patience: 5
+  model_save_path: "models/trained/"
+  checkpoint_path: "models/checkpoints/"
+
+# API Settings
+api:
+  host: "0.0.0.0"
+  port: 8000
+  debug: true
+  reload: true
+  workers: 4
+
+# Database
+database:
+  url: "sqlite:///data/sentiment_analysis.db"
+  echo: false
+
+# Logging
+logging:
+  level: "INFO"
+  format: "{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}"
+  file: "logs/app.log"
+
+# Model Configuration
+models:
+  pytorch:
+    embedding_dim: 128
+    hidden_dim: 64
+    num_layers: 2
+    dropout: 0.3
+  tensorflow:
+    embedding_dim: 128
+    units: 64
+    dropout: 0.3 
